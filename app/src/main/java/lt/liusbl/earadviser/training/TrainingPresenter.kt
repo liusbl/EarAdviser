@@ -54,6 +54,10 @@ class TrainingPresenter(
         }
     }
 
+    override fun onDiminishNotesSelected() {
+
+    }
+
     override fun onPlayPreviousChordSelected() {
         if (!isChordPlaying) {
             chordPlayer.playPrevious(duration)
