@@ -39,6 +39,6 @@ interface TrainingContract {
     interface Model {
         fun getChords(): Observable<List<Chord>>
 
-        fun getBaseNote(): Observable<Note>
+        fun getFundamentalNote(): Observable<Note>
     }
 }

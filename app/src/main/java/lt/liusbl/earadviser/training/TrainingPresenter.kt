@@ -36,7 +36,9 @@ class TrainingPresenter(
 
     override fun onPlay440ButtonSelected() {
         if (!isChordPlaying) {
-            model.getBaseNote().subscribe({ note -> chordPlayer.playBaseNote(note, duration) })
+            model.getFundamentalNote().subscribe({ note ->
+                chordPlayer.playBaseNote(note, duration)
+            })
         }
     }
 

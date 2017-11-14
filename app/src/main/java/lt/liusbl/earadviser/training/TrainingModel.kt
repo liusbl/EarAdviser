@@ -30,8 +30,8 @@ class TrainingModel(
         })
     }
 
-    override fun getBaseNote(): Observable<Note> {
-        return noteRepository.getBaseNote()
+    override fun getFundamentalNote(): Observable<Note> {
+        return noteRepository.getFundamentalNote()
                 .observeOn(scheduler)
     }
 }

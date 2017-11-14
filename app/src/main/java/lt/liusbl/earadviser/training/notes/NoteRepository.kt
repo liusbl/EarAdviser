@@ -8,5 +8,5 @@ interface NoteRepository {
 
     fun getScore(): Observable<Score>
 
-    fun getBaseNote(): Observable<Note>
+    fun getFundamentalNote(): Observable<Note>
 }
