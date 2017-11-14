@@ -55,6 +55,7 @@ class TrainingActivity : AppCompatActivity(), TrainingContract.View {
         trainingPlayPreviousChord.setOnClickListener { presenter.onPlayPreviousChordSelected() }
         trainingPlayNextChordButton.setOnClickListener { presenter.onPlayNextChordButtonSelected() }
         trainingDiminishNotesImageView.setOnClickListener { presenter.onDiminishNotesSelected() }
+        trainingIncreaseNotesImageView.setOnClickListener { presenter.onIncreaseNotesSelected() }
         trainingDurationSeekBar.setOnSeekBarChangeListener(createOnSeekBarChangeListener())
     }
 

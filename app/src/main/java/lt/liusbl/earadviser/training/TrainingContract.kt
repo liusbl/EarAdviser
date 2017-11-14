@@ -32,6 +32,8 @@ interface TrainingContract {
         fun onPlayPreviousChordSelected()
 
         fun onDiminishNotesSelected()
+
+        fun onIncreaseNotesSelected()
     }
 
     interface Model {
