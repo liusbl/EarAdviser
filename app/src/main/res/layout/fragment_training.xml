@@ -117,13 +117,13 @@
         android:layout_marginBottom="8dp"
         android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/trainingPlayInSequence"
-        app:layout_constraintEnd_toStartOf="@+id/imageIncreaseNotesImageView"
+        app:layout_constraintEnd_toStartOf="@+id/trainingIncreaseNotesImageView"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/trainingDiminishNotesImageView"
         tools:text="2"/>
 
     <ImageView
-        android:id="@+id/imageIncreaseNotesImageView"
+        android:id="@+id/trainingIncreaseNotesImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@android:drawable/arrow_up_float"
