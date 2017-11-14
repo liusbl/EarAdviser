@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/alabaster"
+    tools:context="lt.liusbl.earadviser.training.TrainingFragment">
+
+    <SeekBar
+        android:id="@+id/trainingDurationSeekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:max="1000"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toStartOf="@+id/trainingDurationTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/trainingPlayChordAgain"/>
+
+    <TextView
+        android:id="@+id/trainingDurationTextView"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/trainingDurationSeekBar"
+        app:layout_constraintEnd_toEndOf="@+id/trainingPlayInSequence"
+        app:layout_constraintTop_toTopOf="@+id/trainingDurationSeekBar"
+        tools:text="400 ms"/>
+
+    <TextView
+        android:id="@+id/trainingResultsTextView"
+        style="@style/Base.TextAppearance.AppCompat.Display1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/trainingDurationSeekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="C_SHARP, D, A_SHARP"/>
+
+    <Button
+        android:id="@+id/trainingShowResultButton"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:text="@string/training_button_play_show_result"
+        app:layout_constraintBottom_toTopOf="@+id/trainingPlayPreviousChord"
+        app:layout_constraintEnd_toEndOf="@+id/trainingPlayNextChordButton"
+        app:layout_constraintStart_toStartOf="@+id/trainingPlayNextChordButton"
+        app:layout_constraintTop_toTopOf="@+id/trainingPlay440Button"/>
+
+    <Button
+        android:id="@+id/trainingPlayNextChordButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/training_button_play_next_chord"
+        app:layout_constraintBottom_toBottomOf="@+id/trainingPlayPreviousChord"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/trainingPlayPreviousChord"
+        app:layout_constraintTop_toTopOf="@+id/trainingPlayPreviousChord"/>
+
+    <Button
+        android:id="@+id/trainingPlay440Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/training_button_play_440hz"
+        app:layout_constraintBottom_toTopOf="@+id/trainingPlayPreviousChord"
+        app:layout_constraintEnd_toEndOf="@+id/trainingPlayPreviousChord"
+        app:layout_constraintStart_toStartOf="@+id/trainingPlayPreviousChord"/>
+
+    <Button
+        android:id="@+id/trainingPlayChordAgain"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/training_button_play_chords_again"
+        app:layout_constraintBottom_toTopOf="@+id/trainingPlay440Button"
+        app:layout_constraintEnd_toEndOf="@+id/trainingPlay440Button"
+        app:layout_constraintStart_toStartOf="@+id/trainingPlay440Button"/>
+
+    <Button
+        android:id="@+id/trainingPlayInSequence"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/training_button_play_in_sequence"
+        app:layout_constraintBottom_toTopOf="@+id/trainingShowResultButton"
+        app:layout_constraintEnd_toEndOf="@+id/trainingShowResultButton"
+        app:layout_constraintStart_toStartOf="@+id/trainingShowResultButton"/>
+
+    <Button
+        android:id="@+id/trainingPlayPreviousChord"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/training_button_play_previous_chord"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/trainingPlayNextChordButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/trainingPlayInSequence"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@android:drawable/arrow_up_float"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="@+id/trainingPlayInSequence"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@android:drawable/arrow_down_float"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/trainingPlayInSequence"
+        app:layout_constraintTop_toTopOf="@+id/textView"/>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Ear Adviser</string>
+
+    <string name="training_button_play_chords_again">Play chord again</string>
+    <string name="training_button_play_in_sequence">Play in sequence</string>
+    <string name="training_button_play_previous_chord">Play previous chord</string>
+    <string name="training_button_play_440hz">Play A (440Hz)</string>
+    <string name="training_button_play_show_result">Show result</string>
+    <string name="training_button_play_next_chord">Play next chord</string>
+    <string name="training_text_duration_format">%1$d ms</string>
+</resources>
