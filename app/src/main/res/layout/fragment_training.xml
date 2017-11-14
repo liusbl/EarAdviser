@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/alabaster"
-    tools:context="lt.liusbl.earadviser.training.TrainingFragment">
+    tools:context="lt.liusbl.earadviser.training.TrainingActivity">
 
     <SeekBar
         android:id="@+id/trainingDurationSeekBar"
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:max="1000"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/trainingNoteCountTextView"
         app:layout_constraintEnd_toStartOf="@+id/trainingDurationTextView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/trainingPlayChordAgain"/>
@@ -61,6 +61,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:text="@string/training_button_play_next_chord"
         app:layout_constraintBottom_toBottomOf="@+id/trainingPlayPreviousChord"
         app:layout_constraintEnd_toEndOf="parent"
@@ -109,37 +110,39 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/trainingNoteCountTextView"
+        style="@style/Base.TextAppearance.AppCompat.Small"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="TextView"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/trainingPlayInSequence"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/imageIncreaseNotesImageView"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"/>
+        app:layout_constraintStart_toEndOf="@+id/trainingDiminishNotesImageView"
+        tools:text="2"/>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageIncreaseNotesImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@android:drawable/arrow_up_float"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="@+id/trainingNoteCountTextView"
         app:layout_constraintEnd_toEndOf="@+id/trainingPlayInSequence"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView"/>
+        app:layout_constraintStart_toEndOf="@+id/trainingNoteCountTextView"
+        app:layout_constraintTop_toTopOf="@+id/trainingNoteCountTextView"/>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/trainingDiminishNotesImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@android:drawable/arrow_down_float"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="@+id/trainingNoteCountTextView"
+        app:layout_constraintEnd_toStartOf="@+id/trainingNoteCountTextView"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@+id/trainingPlayInSequence"
-        app:layout_constraintTop_toTopOf="@+id/textView"/>
+        app:layout_constraintTop_toTopOf="@+id/trainingNoteCountTextView"/>
 
 </android.support.constraint.ConstraintLayout>
