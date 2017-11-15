@@ -1,8 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply from: 'quality.gradle'
 
+kapt {
+    correctErrorTypes = true
+}
 buildscript {
     repositories {
         mavenCentral()
@@ -24,13 +28,19 @@ repositories {
 }
 android {
     compileSdkVersion 26
-    buildToolsVersion "25.0.3"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "lt.blaster.template"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath false
+            }
+        }
     }
     signingConfigs {
         release
@@ -65,10 +75,14 @@ android {
         disable 'InvalidPackage', 'PrivateResource', 'MissingTranslation'
         abortOnError false
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    ext.support_version = "26.1.0"
+    ext.support_version = "26.0.2"
     ext.architecture_components_version = "1.0.0"
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:appcompat-v7:$support_version"
@@ -93,10 +107,21 @@ dependencies {
     compile "android.arch.persistence.room:runtime:$architecture_components_version"
     compile "android.arch.persistence.room:rxjava2:$architecture_components_version"
     compile "android.arch.persistence.room:compiler:$architecture_components_version"
-    annotationProcessor "android.arch.persistence.room:compiler:$architecture_components_version"
+    kapt "android.arch.persistence.room:compiler:$architecture_components_version"
 
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
     compile "io.reactivex.rxjava2:rxjava:2.1.6"
     compile "io.reactivex.rxjava2:rxandroid:2.0.1"
+}
+
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '26.0.2'
+            }
+        }
+    }
 }
