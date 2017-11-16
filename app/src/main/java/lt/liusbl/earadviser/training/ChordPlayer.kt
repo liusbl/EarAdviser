@@ -15,4 +15,6 @@ interface ChordPlayer {
     fun playPrevious(duration: Long)
 
     fun playBaseNote(note: Note, duration: Long)
+
+    fun getCurrentChord(): Chord
 }

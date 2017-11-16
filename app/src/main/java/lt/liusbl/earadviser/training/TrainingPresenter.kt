@@ -43,9 +43,8 @@ class TrainingPresenter(
     }
 
     override fun onShowResultButtonSelected() {
-        val chords = this.chords ?: listOf()
         onView {
-            showResult(chords[chordPosition].notes
+            showResult(chordPlayer.getCurrentChord().notes
                     .joinToString(transform = Note::name, separator = "\n"))
         }
     }

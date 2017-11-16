@@ -49,6 +49,8 @@ class ChordPlayerImpl(
         play { playNote(note, duration) }
     }
 
+    override fun getCurrentChord() = chords?.get(chordPosition) ?: Chord(emptyList())
+
     private fun playNote(note: Note, duration: Long) {
         notePlayer.play(note, duration)
     }
