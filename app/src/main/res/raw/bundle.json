@@ -412,103 +412,120 @@
       "name": "C",
       "semitones": 0,
       "octave": 4,
-      "frequency": 261.63
+      "frequency": 261.63,
+      "isBaseNote": true
     },
     {
       "name": "C#",
       "semitones": 1,
       "octave": 4,
-      "frequency": 277.18
+      "frequency": 277.18,
+      "isBaseNote": true
     },
     {
       "name": "D♭",
       "semitones": 1,
       "octave": 4,
-      "frequency": 277.18
+      "frequency": 277.18,
+      "isBaseNote": true
     },
     {
       "name": "D",
       "semitones": 2,
       "octave": 4,
-      "frequency": 293.66
+      "frequency": 293.66,
+      "isBaseNote": true
     },
     {
       "name": "D#",
       "semitones": 3,
       "octave": 4,
-      "frequency": 311.13
+      "frequency": 311.13,
+      "isBaseNote": true
     },
     {
       "name": "E♭",
       "semitones": 3,
       "octave": 4,
-      "frequency": 311.13
+      "frequency": 311.13,
+      "isBaseNote": true
     },
     {
       "name": "E",
       "semitones": 4,
       "octave": 4,
-      "frequency": 329.63
+      "frequency": 329.63,
+      "isBaseNote": true
     },
     {
       "name": "F",
       "semitones": 5,
       "octave": 4,
-      "frequency": 349.23
+      "frequency": 349.23,
+      "isBaseNote": true
     },
     {
       "name": "F#",
       "semitones": 6,
       "octave": 4,
-      "frequency": 369.99
+      "frequency": 369.99,
+      "isBaseNote": true
     },
     {
       "name": "G♭",
       "semitones": 6,
       "octave": 4,
-      "frequency": 369.99
+      "frequency": 369.99,
+      "isBaseNote": true
     },
     {
       "name": "G",
       "semitones": 7,
       "octave": 4,
-      "frequency": 392.00
+      "frequency": 392.00,
+      "isBaseNote": true
     },
     {
       "name": "G#",
       "semitones": 8,
       "octave": 4,
-      "frequency": 415.30
+      "frequency": 415.30,
+      "isBaseNote": true
     },
     {
       "name": "A♭",
       "semitones": 8,
       "octave": 4,
-      "frequency": 415.30
+      "frequency": 415.30,
+      "isBaseNote": true
     },
     {
       "name": "A",
       "semitones": 9,
       "octave": 4,
-      "frequency": 440.00
+      "frequency": 440.00,
+      "isBaseNote": true
     },
     {
       "name": "A#",
       "semitones": 10,
       "octave": 4,
-      "frequency": 466.16
+      "frequency": 466.16,
+      "isBaseNote": true
     },
     {
       "name": "B♭",
       "semitones": 10,
       "octave": 4,
-      "frequency": 466.16
+      "frequency": 466.16,
+      "isBaseNote": true
     },
     {
       "name": "B",
       "semitones": 11,
       "octave": 4,
-      "frequency": 493.88
+      "frequency": 493.88,
+      "isBaseNote": true
     },
     {
       "name": "C",
@@ -917,80 +934,6 @@
       "semitones": 11,
       "octave": 8,
       "frequency": 7902.10
-    }
-  ],
-  "base_notes": [
-    {
-      "name": "C",
-      "semitones": 0,
-      "octave": 4,
-      "frequency": 261.63
-    },
-    {
-      "name": "C#",
-      "semitones": 1,
-      "octave": 4,
-      "frequency": 277.18
-    },
-    {
-      "name": "D",
-      "semitones": 2,
-      "octave": 4,
-      "frequency": 293.66
-    },
-    {
-      "name": "D#",
-      "semitones": 3,
-      "octave": 4,
-      "frequency": 311.13
-    },
-    {
-      "name": "E",
-      "semitones": 4,
-      "octave": 4,
-      "frequency": 329.63
-    },
-    {
-      "name": "F",
-      "semitones": 5,
-      "octave": 4,
-      "frequency": 349.23
-    },
-    {
-      "name": "F#",
-      "semitones": 6,
-      "octave": 4,
-      "frequency": 369.99
-    },
-    {
-      "name": "G",
-      "semitones": 7,
-      "octave": 4,
-      "frequency": 392.00
-    },
-    {
-      "name": "G#",
-      "semitones": 8,
-      "octave": 4,
-      "frequency": 415.30
-    },
-    {
-      "name": "A",
-      "semitones": 9,
-      "octave": 4,
-      "frequency": 440.00
-    },
-    {
-      "name": "A#",
-      "semitones": 10,
-      "octave": 4,
-      "frequency": 466.16
-    },
-    {
-      "name": "B",
-      "semitones": 11,
-      "octave": 4,
-      "frequency": 493.88
     }
   ]
 }

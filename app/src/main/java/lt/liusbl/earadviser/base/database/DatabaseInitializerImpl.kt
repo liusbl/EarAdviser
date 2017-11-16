@@ -15,7 +15,6 @@ class DatabaseInitializerImpl(
     override fun initialize(appDatabase: AppDatabase) {
         val bundleJson = getBundledJson()
         initialize(bundleJson, NoteItem::class.java, appDatabase.noteItemDao(), HEADER_NOTES)
-//        initialize(bundleJson, NoteItem::class.java, appDatabase.noteItemDao(), HEADER_BASE_NOTES)
     }
 
     private fun getBundledJson(): String {
@@ -35,6 +34,5 @@ class DatabaseInitializerImpl(
 
     companion object {
         private const val HEADER_NOTES = "notes"
-        private const val HEADER_BASE_NOTES = "base_notes"
     }
 }

@@ -9,5 +9,6 @@ data class NoteItem(
         val name: String,
         val semitones: Long,
         val octave: Int,
-        val frequency: Double
+        val frequency: Double,
+        val isBaseNote: Boolean
 )
