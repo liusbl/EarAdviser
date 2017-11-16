@@ -2,6 +2,7 @@ package lt.liusbl.earadviser.base
 
 import android.content.Context
 import com.google.gson.Gson
+import lt.liusbl.earadviser.R
 import lt.liusbl.earadviser.base.database.DatabaseBundleInitializerImpl
 import lt.liusbl.earadviser.base.database.DatabaseFactoryImpl
 import lt.liusbl.earadviser.base.database.DatabaseInitializerImpl
@@ -11,7 +12,7 @@ class DependencyRetriever(private val context: Context) {
 
     val appDatabase by lazy {
         val insertor = DatabaseBundleInitializerImpl(gson)
-        val initializer = DatabaseInitializerImpl(context, insertor)
+        val initializer = DatabaseInitializerImpl(context, insertor, R.raw.bundle)
         DatabaseFactoryImpl(context, initializer).create()
     }
 }

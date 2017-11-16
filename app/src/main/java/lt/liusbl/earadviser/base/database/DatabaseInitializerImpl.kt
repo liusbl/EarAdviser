@@ -9,21 +9,32 @@ import java.nio.charset.Charset
 
 class DatabaseInitializerImpl(
         private val context: Context,
-        private val bundleInitializer: DatabaseBundleInitializer
+        private val bundleInitializer: DatabaseBundleInitializer,
+        @RawRes private val bundleRes: Int
 ) : DatabaseInitializer {
     override fun initialize(appDatabase: AppDatabase) {
-        val notesJsonObject = getBundledJson(context, R.raw.notes)
-        bundleInitializer.initialize(notesJsonObject, NoteItem::class.java,
-                appDatabase.noteItemDao(), HEADER_NOTES)
+        val bundleJson = getBundledJson()
+        initialize(bundleJson, NoteItem::class.java, appDatabase.noteItemDao(), HEADER_NOTES)
+//        initialize(bundleJson, NoteItem::class.java, appDatabase.noteItemDao(), HEADER_BASE_NOTES)
     }
 
-    private fun getBundledJson(context: Context, @RawRes bundleRes: Int): String {
+    private fun getBundledJson(): String {
         val inputStream: InputStream = context.resources.openRawResource(bundleRes)
         return inputStream.bufferedReader(Charset.defaultCharset()).readLines()
                 .joinToString(separator = "")
     }
 
+    private fun <T> initialize(
+            bundleJson: String,
+            genericClass: Class<T>,
+            baseDao: BaseDao<T>,
+            header: String
+    ) {
+        bundleInitializer.initialize(bundleJson, genericClass, baseDao, header)
+    }
+
     companion object {
         private const val HEADER_NOTES = "notes"
+        private const val HEADER_BASE_NOTES = "base_notes"
     }
 }
