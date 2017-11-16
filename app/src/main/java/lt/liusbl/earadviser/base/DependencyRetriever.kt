@@ -11,8 +11,8 @@ class DependencyRetriever(private val context: Context) {
     val gson by lazy { Gson() }
 
     val appDatabase by lazy {
-        val insertor = DatabaseBundleInitializerImpl(gson)
-        val initializer = DatabaseInitializerImpl(context, insertor, R.raw.bundle)
+        val bundleInitializer = DatabaseBundleInitializerImpl(gson)
+        val initializer = DatabaseInitializerImpl(context, bundleInitializer, R.raw.bundle)
         DatabaseFactoryImpl(context, initializer).create()
     }
 }
