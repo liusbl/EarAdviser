@@ -5,10 +5,10 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity
 data class NoteItem(
-        @PrimaryKey(autoGenerate = true) val noteId: Int,
-        val name: String,
-        val semitones: Long,
-        val octave: Int,
-        val frequency: Double,
-        val isBaseNote: Boolean
+        @PrimaryKey(autoGenerate = true) var noteId: Int = 0,
+        var name: String = "",
+        var semitones: Long = 0,
+        var octave: Int = 0,
+        var frequency: Double = 0.0,
+        var isBaseNote: Boolean = false
 )
