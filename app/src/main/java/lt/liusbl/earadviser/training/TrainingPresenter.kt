@@ -3,7 +3,6 @@ package lt.liusbl.earadviser.training
 import io.reactivex.disposables.CompositeDisposable
 import lt.liusbl.earadviser.base.presenter.BasePresenterImpl
 import lt.liusbl.earadviser.training.notes.Note
-import lt.liusbl.earadviser.training.score.Chord
 
 class TrainingPresenter(
         private val model: TrainingContract.Model,
@@ -11,8 +10,6 @@ class TrainingPresenter(
 ) : TrainingContract.Presenter, BasePresenterImpl<TrainingContract.View>() {
     private val disposables: CompositeDisposable = CompositeDisposable()
     private var duration = 400L
-    private var chords: List<Chord>? = null
-    private var chordPosition = 0
     private var isChordPlaying = false
 
     override fun onChordStartedListener() {
