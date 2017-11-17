@@ -6,6 +6,7 @@ import io.reactivex.functions.BiFunction
 import lt.liusbl.earadviser.training.notes.Note
 import lt.liusbl.earadviser.training.notes.NoteHandler
 import lt.liusbl.earadviser.training.notes.NoteRepository
+import lt.liusbl.earadviser.training.notes.ScoreFactory
 import lt.liusbl.earadviser.training.score.Chord
 import lt.liusbl.earadviser.training.score.Intervals
 import lt.liusbl.earadviser.training.score.Score
@@ -13,10 +14,12 @@ import lt.liusbl.earadviser.training.score.Score
 class TrainingModel(
         private val scheduler: Scheduler,
         private val noteRepository: NoteRepository,
-        private val noteHandler: NoteHandler
+        private val noteHandler: NoteHandler,
+        private val scoreFactory: ScoreFactory
 ) : TrainingContract.Model {
-    override fun getChords(): Observable<List<Chord>> {
-        return Observable.zip(noteRepository.getNoteList(), noteRepository.getScore(),
+    override fun getChords(noteCount: Int): Observable<List<Chord>> {
+        return Observable.zip(noteRepository.getNoteList(),
+                Observable.just(scoreFactory.createScore(noteCount)),
                 BiFunction { allNotes: List<Note>, score: Score ->
                     createChords(score, allNotes)
                 }).observeOn(scheduler)

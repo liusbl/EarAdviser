@@ -162,8 +162,6 @@ class NoteRepositoryImpl(private val scoreFactory: ScoreFactory) : NoteRepositor
         ))
     }
 
-    override fun getScore(): Observable<Score> = Observable.just(scoreFactory.createScore())
-
     override fun getFundamentalNote(): Observable<Note> =
             Observable.just(Note("A", Note.A, 4, 440.00))
 

@@ -34,7 +34,8 @@ class TrainingActivity : AppCompatActivity(), TrainingContract.View {
         val scoreFactory = ScoreFactoryImpl(permutationFactory, collectionShuffler)
         val noteRepository = NoteRepositoryImpl(scoreFactory)
         val noteHandler = NoteHandlerImpl()
-        val model = TrainingModel(AndroidSchedulers.mainThread(), noteRepository, noteHandler)
+        val model = TrainingModel(AndroidSchedulers.mainThread(), noteRepository,
+                noteHandler, scoreFactory)
         val frequencyAudioDataGenerator = FrequencyAudioDataGeneratorImpl()
         val audioTrackHandler = AudioTrackHandlerImpl()
         val notePlayer = NotePlayerImpl(frequencyAudioDataGenerator, audioTrackHandler)
@@ -91,6 +92,14 @@ class TrainingActivity : AppCompatActivity(), TrainingContract.View {
     override fun onDestroy() {
         presenter.dropView()
         super.onDestroy()
+    }
+
+    override fun showProgress() {
+        progressBar.showProgress()
+    }
+
+    override fun hideProgress() {
+        progressBar.hideProgress()
     }
 
     companion object {

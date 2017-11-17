@@ -9,7 +9,7 @@ class ScoreFactoryImpl(
         private val permutationFactory: PermutationFactory,
         private val shuffler: CollectionShuffler
 ) : ScoreFactory {
-    override fun createScore(): Score {
+    override fun createScore(noteCount: Int): Score {
         val baseNotes = listOf(
                 Note("C", Note.C, 4, 261.63),
                 Note("C#", Note.C_SHARP, 4, 277.18),
@@ -24,7 +24,7 @@ class ScoreFactoryImpl(
                 Note("A#", Note.A_SHARP, 4, 466.16),
                 Note("B", Note.B, 4, 493.88)
         )
-        val permutations = permutationFactory.create(2, 17, 4)
+        val permutations = permutationFactory.create(2, 17, noteCount)
 
         val listOfIntervals = permutations.map { aa: List<Int> ->
             Intervals(aa)

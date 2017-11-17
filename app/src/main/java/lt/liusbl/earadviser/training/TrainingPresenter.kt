@@ -1,6 +1,8 @@
 package lt.liusbl.earadviser.training
 
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import lt.liusbl.earadviser.base.presenter.BasePresenterImpl
 import lt.liusbl.earadviser.training.notes.Note
 
@@ -10,6 +12,7 @@ class TrainingPresenter(
 ) : TrainingContract.Presenter, BasePresenterImpl<TrainingContract.View>() {
     private val disposables: CompositeDisposable = CompositeDisposable()
     private var duration = 400L
+    private var noteCount = 2
     private var isChordPlaying = false
 
     override fun onChordStartedListener() {
@@ -21,8 +24,14 @@ class TrainingPresenter(
     }
 
     override fun onLoad() {
-        model.getChords()
-                .subscribe(chordPlayer::setChords)
+        onView { showProgress() }
+        model.getChords(noteCount)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ chords ->
+                    chordPlayer.setChords(chords)
+                    onView { hideProgress() }
+                })
     }
 
     override fun onPlayChordAgainSelected() {
@@ -57,7 +66,14 @@ class TrainingPresenter(
     }
 
     override fun onIncreaseNotesSelected() {
-
+        onView { showProgress() }
+        model.getChords(++noteCount)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ chords ->
+                    chordPlayer.setChords(chords)
+                    onView { hideProgress() }
+                })
     }
 
     override fun onPlayPreviousChordSelected() {
