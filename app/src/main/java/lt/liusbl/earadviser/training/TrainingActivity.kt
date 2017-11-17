@@ -32,7 +32,7 @@ class TrainingActivity : AppCompatActivity(), TrainingContract.View {
         val permutationFactory = PermutationFactoryImpl()
         val collectionShuffler = CollectionShufflerImpl()
         val scoreFactory = ScoreFactoryImpl(permutationFactory, collectionShuffler)
-        val noteRepository = NoteRepositoryImpl(scoreFactory)
+        val noteRepository = NoteRepositoryImpl()
         val noteHandler = NoteHandlerImpl()
         val model = TrainingModel(AndroidSchedulers.mainThread(), noteRepository,
                 noteHandler, scoreFactory)

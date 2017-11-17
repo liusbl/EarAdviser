@@ -3,7 +3,7 @@ package lt.liusbl.earadviser.training.notes
 import io.reactivex.Observable
 import lt.liusbl.earadviser.training.score.Score
 
-class NoteRepositoryImpl(private val scoreFactory: ScoreFactory) : NoteRepository {
+class NoteRepositoryImpl : NoteRepository {
     override fun getNoteList(): Observable<List<Note>> {
         return Observable.just(listOf(
                 Note("C", Note.C, 0, 16.35),
