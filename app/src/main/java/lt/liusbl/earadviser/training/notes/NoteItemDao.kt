@@ -11,5 +11,5 @@ interface NoteItemDao : BaseDao<NoteItem> {
     fun queryAll(): Single<List<NoteItem>>
 
     @Query("SELECT * FROM NoteItem WHERE octave = :arg0 ORDER BY RANDOM() LIMIT 1")
-    fun queryByOctave(arg0: Int): Single<NoteItem>
+    fun queryRandomByOctave(arg0: Int): Single<NoteItem>
 }

@@ -1,13 +1,11 @@
 package lt.liusbl.earadviser.training.notes
 
 import io.reactivex.Observable
-import io.reactivex.Single
-import java.util.*
 
 class NoteRepositoryImpl(private val noteItemDao: NoteItemDao) : NoteRepository {
     override fun getNoteList() = noteItemDao.queryAll()
 
-    override fun getRandomBaseNote(octave: Int) = noteItemDao.queryByOctave(octave)
+    override fun getRandomBaseNote(octave: Int) = noteItemDao.queryRandomByOctave(octave)
 
     override fun getFundamentalNote(): Observable<Note> =
             Observable.just(Note("A", Note.A, 4, 440.00))
