@@ -2,6 +2,7 @@ package lt.liusbl.earadviser.training.notes
 
 import io.reactivex.Observable
 import lt.liusbl.earadviser.training.score.Score
+import java.util.*
 
 class NoteRepositoryImpl : NoteRepository {
     override fun getNoteList(): Observable<List<Note>> {
@@ -160,6 +161,25 @@ class NoteRepositoryImpl : NoteRepository {
                 Note("B♭", Note.B_FLAT, 8, 7458.62),
                 Note("B", Note.B, 8, 7902.13)
         ))
+    }
+
+    override fun getRandomBaseNote(): Observable<Note> {
+        val list = listOf(
+                Note("C", Note.C, 4, 261.63),
+                Note("C#", Note.C_SHARP, 4, 277.18),
+                Note("D", Note.D, 4, 293.66),
+                Note("D#", Note.D_SHARP, 4, 311.13),
+                Note("E", Note.E, 4, 329.63),
+                Note("F", Note.F, 4, 349.23),
+                Note("F#", Note.F_SHARP, 4, 369.99),
+                Note("G", Note.G, 4, 392.00),
+                Note("G#", Note.G_SHARP, 4, 415.30),
+                Note("A", Note.A, 4, 440.00),
+                Note("A#", Note.A_SHARP, 4, 466.16),
+                Note("B", Note.B, 4, 493.88)
+        )
+        Collections.shuffle(list)
+        return Observable.just(list[0])
     }
 
     override fun getFundamentalNote(): Observable<Note> =

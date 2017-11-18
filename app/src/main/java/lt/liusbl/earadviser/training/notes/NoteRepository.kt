@@ -9,4 +9,6 @@ interface NoteRepository {
     fun getFundamentalNote(): Observable<Note>
 
     fun getBaseNotes(): Observable<List<Note>>
+
+    fun getRandomBaseNote(): Observable<Note>
 }
