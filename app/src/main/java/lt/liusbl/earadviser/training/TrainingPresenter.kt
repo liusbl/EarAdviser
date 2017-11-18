@@ -1,13 +1,11 @@
 package lt.liusbl.earadviser.training
 
-import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
 import lt.liusbl.earadviser.base.presenter.BasePresenterImpl
-import lt.liusbl.earadviser.training.notes.Note
 import lt.liusbl.earadviser.training.notes.NoteItem
 import lt.liusbl.earadviser.training.notes.NoteRepository
 
@@ -36,9 +34,12 @@ class TrainingPresenter(
 
     override fun onPlay440ButtonSelected() {
         if (!isChordPlaying) {
-//            model.getFundamentalNote().subscribe({ note ->
-//                chordPlayer.playBaseNote(note, duration)
-//            })
+            noteRepository.getFundamentalNote()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe { noteItem ->
+                        chordPlayer.playBaseNote(noteItem, duration)
+                    }
         }
     }
 

@@ -12,4 +12,7 @@ interface NoteItemDao : BaseDao<NoteItem> {
 
     @Query("SELECT * FROM NoteItem WHERE octave = :arg0 ORDER BY RANDOM() LIMIT 1")
     fun queryRandomByOctave(arg0: Int): Single<NoteItem>
+
+    @Query("SELECT * FROM NoteItem WHERE frequency = :arg0")
+    fun queryByFrequency(arg0: Double): Single<NoteItem>
 }

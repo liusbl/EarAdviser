@@ -57,7 +57,7 @@ class ChordPlayerImpl(
                 }
     }
 
-    override fun playBaseNote(note: Note, duration: Long) {
+    override fun playBaseNote(note: NoteItem, duration: Long) {
         play { playNote(note, duration) }
     }
 

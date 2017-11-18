@@ -6,7 +6,7 @@ import io.reactivex.Single
 interface NoteRepository {
     fun getNoteList(): Single<List<NoteItem>>
 
-    fun getFundamentalNote(): Observable<Note>
+    fun getFundamentalNote(): Single<NoteItem>
 
     fun getBaseNotes(): Observable<List<Note>>
 

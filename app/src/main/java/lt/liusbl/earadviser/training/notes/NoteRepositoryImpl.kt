@@ -1,14 +1,15 @@
 package lt.liusbl.earadviser.training.notes
 
 import io.reactivex.Observable
+import io.reactivex.Single
 
 class NoteRepositoryImpl(private val noteItemDao: NoteItemDao) : NoteRepository {
     override fun getNoteList() = noteItemDao.queryAll()
 
     override fun getRandomBaseNote(octave: Int) = noteItemDao.queryRandomByOctave(octave)
 
-    override fun getFundamentalNote(): Observable<Note> =
-            Observable.just(Note("A", Note.A, 4, 440.00))
+    override fun getFundamentalNote(): Single<NoteItem> =
+            noteItemDao.queryByFrequency(FUNDAMENTAL_FREQUENCY)
 
     override fun getBaseNotes(): Observable<List<Note>> {
         return Observable.just(listOf(
@@ -25,5 +26,9 @@ class NoteRepositoryImpl(private val noteItemDao: NoteItemDao) : NoteRepository 
                 Note("A#", Note.A_SHARP, 4, 466.16),
                 Note("B", Note.B, 4, 493.88)
         ))
+    }
+
+    companion object {
+        private const val FUNDAMENTAL_FREQUENCY = 440.00
     }
 }
