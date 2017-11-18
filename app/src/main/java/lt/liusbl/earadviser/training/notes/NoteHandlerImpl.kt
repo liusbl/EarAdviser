@@ -1,7 +1,11 @@
 package lt.liusbl.earadviser.training.notes
 
 class NoteHandlerImpl : NoteHandler {
-    override fun getNoteFromInterval(baseNote: Note, interval: Int, allNotes: List<Note>): Note {
+    override fun getNoteFromInterval(
+            baseNote: NoteItem,
+            interval: Int,
+            allNotes: List<NoteItem>
+    ): NoteItem {
         val combinedSemitones = baseNote.semitones + interval
         val semitones = combinedSemitones % 12
         return if (combinedSemitones > 11) {
@@ -13,9 +17,9 @@ class NoteHandlerImpl : NoteHandler {
         }
     }
 
-    private fun getNoteFromList(semitones: Long, octave: Int, allNotes: List<Note>): Note {
+    private fun getNoteFromList(semitones: Long, octave: Int, allNotes: List<NoteItem>): NoteItem {
         return allNotes.firstOrNull {
             it.semitones == semitones && it.octave == octave
-        } ?: Note()
+        } ?: NoteItem()
     }
 }

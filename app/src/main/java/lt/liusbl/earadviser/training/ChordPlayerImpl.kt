@@ -5,9 +5,9 @@ import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import lt.liusbl.earadviser.training.notes.Note
+import lt.liusbl.earadviser.training.notes.NoteItem
 import lt.liusbl.earadviser.training.player.NotePlayer
 import lt.liusbl.earadviser.training.score.Chord
-import java.util.concurrent.TimeUnit
 
 class ChordPlayerImpl(
         private val listener: () -> OnChordEventListener,
@@ -16,7 +16,12 @@ class ChordPlayerImpl(
         private val notePlayer: NotePlayer,
         private val chordHandler: ChordHandler
 ) : ChordPlayer {
-    override fun playNext(baseNote: Note, allNotes: List<Note>, noteCount: Int, duration: Long) {
+    override fun playNext(
+            baseNote: NoteItem,
+            allNotes: List<NoteItem>,
+            noteCount: Int,
+            duration: Long
+    ) {
         chordHandler.getNextChord(baseNote, allNotes, noteCount)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -57,6 +62,11 @@ class ChordPlayerImpl(
     }
 
     override fun getCurrentChord() = Chord(emptyList()) // todo
+
+    private fun playNote(noteItem: NoteItem, duration: Long) {
+        val note = Note(noteItem.name, noteItem.semitones, noteItem.octave, noteItem.frequency)
+        notePlayer.play(note, duration)
+    }
 
     private fun playNote(note: Note, duration: Long) {
         notePlayer.play(note, duration)

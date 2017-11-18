@@ -1,12 +1,14 @@
 package lt.liusbl.earadviser.training
 
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
 import lt.liusbl.earadviser.base.presenter.BasePresenterImpl
 import lt.liusbl.earadviser.training.notes.Note
+import lt.liusbl.earadviser.training.notes.NoteItem
 import lt.liusbl.earadviser.training.notes.NoteRepository
 
 class TrainingPresenter(
@@ -43,7 +45,7 @@ class TrainingPresenter(
     override fun onShowResultButtonSelected() {
         onView {
             showResult(chordPlayer.getCurrentChord().notes
-                    .joinToString(transform = Note::name, separator = "\n"))
+                    .joinToString(transform = NoteItem::name, separator = "\n"))
         }
     }
 
@@ -70,13 +72,13 @@ class TrainingPresenter(
     override fun onPlayNextChordButtonSelected() {
         if (!isChordPlaying) {
             onView { resetResult() }
-            Observable.zip(noteRepository.getRandomBaseNote(), noteRepository.getNoteList(),
-                    BiFunction { baseNote: Note, allNotes: List<Note> ->
+            Single.zip(noteRepository.getRandomBaseNote(4), noteRepository.getNoteList(),
+                    BiFunction { baseNote: NoteItem, allNotes: List<NoteItem> ->
                         chordPlayer.playNext(baseNote, allNotes, noteCount, duration)
                     })
-                    .observeOn(Schedulers.io())
-                    .subscribeOn(AndroidSchedulers.mainThread())
-                    .subscribe {
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe { t1: Unit?, t2: Throwable? ->
                         // todo hide progress
                     }
         }

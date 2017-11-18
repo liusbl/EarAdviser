@@ -9,6 +9,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_training.*
 import lt.liusbl.earadviser.R
+import lt.liusbl.earadviser.base.dependencyRetriever
 import lt.liusbl.earadviser.training.notes.NoteHandlerImpl
 import lt.liusbl.earadviser.training.notes.NoteRepositoryImpl
 import lt.liusbl.earadviser.training.notes.RandomSortedIntGeneratorImpl
@@ -28,7 +29,8 @@ class TrainingActivity : AppCompatActivity(), TrainingContract.View {
     }
 
     private fun initializePresenter() {
-        val noteRepository = NoteRepositoryImpl()
+        val appDatabase = applicationContext.dependencyRetriever.appDatabase
+        val noteRepository = NoteRepositoryImpl(appDatabase.noteItemDao())
         val noteHandler = NoteHandlerImpl()
         val frequencyAudioDataGenerator = FrequencyAudioDataGeneratorImpl()
         val audioTrackHandler = AudioTrackHandlerImpl()

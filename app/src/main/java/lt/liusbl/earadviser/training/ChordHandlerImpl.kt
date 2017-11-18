@@ -1,7 +1,7 @@
 package lt.liusbl.earadviser.training
 
 import io.reactivex.Observable
-import lt.liusbl.earadviser.training.notes.Note
+import lt.liusbl.earadviser.training.notes.NoteItem
 import lt.liusbl.earadviser.training.score.Chord
 
 class ChordHandlerImpl(
@@ -14,8 +14,8 @@ class ChordHandlerImpl(
     }
 
     override fun getNextChord(
-            baseNote: Note,
-            allNote: List<Note>,
+            baseNote: NoteItem,
+            allNote: List<NoteItem>,
             noteCount: Int
     ): Observable<Chord> {
         val nextChord = chordFactory.create(baseNote, allNote,

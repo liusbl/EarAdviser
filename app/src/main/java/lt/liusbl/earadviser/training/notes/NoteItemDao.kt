@@ -10,6 +10,6 @@ interface NoteItemDao : BaseDao<NoteItem> {
     @Query("SELECT * FROM NoteItem")
     fun queryAll(): Single<List<NoteItem>>
 
-    @Query("SELECT * FROM NoteItem WHERE octave = :octave")
-    fun queryByOctave(octave: Int): Single<List<NoteItem>>
+    @Query("SELECT * FROM NoteItem WHERE octave = :arg0 ORDER BY RANDOM() LIMIT 1")
+    fun queryByOctave(arg0: Int): Single<NoteItem>
 }
