@@ -2,7 +2,7 @@ package lt.liusbl.earadviser.training
 
 import io.reactivex.Observable
 import lt.liusbl.earadviser.base.presenter.BasePresenter
-import lt.liusbl.earadviser.base.widget.utils.progress.ProgressViewController
+import lt.liusbl.earadviser.util.widget.utils.progress.ProgressViewController
 import lt.liusbl.earadviser.training.notes.Note
 import lt.liusbl.earadviser.training.score.Chord
 

@@ -1,4 +1,4 @@
-package lt.liusbl.earadviser.base.widget.utils.delayer;
+package lt.liusbl.earadviser.util.widget.utils.delayer;
 
 import android.os.Handler
 

@@ -1,4 +1,4 @@
-package lt.liusbl.earadviser.base.widget
+package lt.liusbl.earadviser.util.widget
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,13 +7,12 @@ import android.graphics.PorterDuff
 import android.os.Handler
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
-import android.view.View
 import android.widget.FrameLayout
 import android.widget.ProgressBar
-import lt.liusbl.earadviser.base.widget.utils.animators.AlphaAnimator
-import lt.liusbl.earadviser.base.widget.utils.delayer.ActionDelayer
-import lt.liusbl.earadviser.base.widget.utils.obtainAttributes
-import lt.liusbl.earadviser.base.widget.utils.progress.ProgressViewController
+import lt.liusbl.earadviser.util.widget.utils.animators.AlphaAnimator
+import lt.liusbl.earadviser.util.widget.utils.delayer.ActionDelayer
+import lt.liusbl.earadviser.util.widget.utils.obtainAttributes
+import lt.liusbl.earadviser.util.widget.utils.progress.ProgressViewController
 import kotlinx.android.synthetic.main.layout_progress_bar_modal.view.*
 import lt.liusbl.earadviser.R
 

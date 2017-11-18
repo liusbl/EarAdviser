@@ -1,4 +1,4 @@
-package lt.liusbl.earadviser.base.widget.utils.progress
+package lt.liusbl.earadviser.util.widget.utils.progress
 
 interface ProgressViewController {
     fun showProgress()

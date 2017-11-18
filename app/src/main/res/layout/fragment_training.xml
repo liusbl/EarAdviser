@@ -144,7 +144,7 @@
         app:layout_constraintStart_toStartOf="@+id/trainingPlayInSequence"
         app:layout_constraintTop_toTopOf="@+id/trainingNoteCountTextView" />
 
-    <lt.liusbl.earadviser.base.widget.ModalProgressView
+    <lt.liusbl.earadviser.util.widget.ModalProgressView
         android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

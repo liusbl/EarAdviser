@@ -1,4 +1,4 @@
-package lt.liusbl.earadviser.base.widget.utils.animators;
+package lt.liusbl.earadviser.util.widget.utils.animators;
 
 import android.animation.ValueAnimator
 import android.view.View

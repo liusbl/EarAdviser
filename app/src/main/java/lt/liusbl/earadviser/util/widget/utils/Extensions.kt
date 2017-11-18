@@ -1,4 +1,4 @@
-package lt.liusbl.earadviser.base.widget.utils
+package lt.liusbl.earadviser.util.widget.utils
 
 import android.content.Context
 import android.content.res.TypedArray
