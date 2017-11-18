@@ -16,8 +16,6 @@ interface TrainingContract {
     }
 
     interface Presenter : BasePresenter<View>, OnChordEventListener {
-        fun onLoad()
-
         fun onPlayChordAgainSelected()
 
         fun onPlay440ButtonSelected()

@@ -8,16 +8,21 @@ class ChordHandlerImpl(
         private val chordFactory: ChordFactory,
         private val chordRepository: ChordRepository
 ) : ChordHandler {
-    override var baseNote: Note = Note()
-    override var allNotes: List<Note> = emptyList()
-    override var minInterval: Int = 2
-    override var maxInterval: Int = 17
-    override var noteCount: Int = 1
+    companion object {
+        private const val MIN_INTERVAL: Int = 2
+        private const val MAX_INTERVAL: Int = 17
+    }
 
-    override fun getNextChord(): Observable<Chord> {
-        val nextChord = chordFactory.create(baseNote, allNotes, minInterval, maxInterval, noteCount)
+    override fun getNextChord(
+            baseNote: Note,
+            allNote: List<Note>,
+            noteCount: Int
+    ): Observable<Chord> {
+        val nextChord = chordFactory.create(baseNote, allNote,
+                MIN_INTERVAL, MAX_INTERVAL, noteCount)
         return Observable.fromCallable {
             chordRepository.insert(nextChord)
+                    .subscribe()
             nextChord
         }
     }

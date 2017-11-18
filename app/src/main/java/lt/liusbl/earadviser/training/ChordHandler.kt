@@ -5,13 +5,7 @@ import lt.liusbl.earadviser.training.notes.Note
 import lt.liusbl.earadviser.training.score.Chord
 
 interface ChordHandler {
-    var allNotes: List<Note>
-    var baseNote: Note
-    var minInterval: Int
-    var maxInterval: Int
-    var noteCount: Int
-
-    fun getNextChord(): Observable<Chord>
+    fun getNextChord(baseNote: Note, allNote: List<Note>, noteCount: Int): Observable<Chord>
 
     fun getLastChord(): Observable<Chord>
 

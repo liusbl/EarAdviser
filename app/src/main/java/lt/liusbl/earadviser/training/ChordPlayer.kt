@@ -4,9 +4,7 @@ import lt.liusbl.earadviser.training.notes.Note
 import lt.liusbl.earadviser.training.score.Chord
 
 interface ChordPlayer {
-    fun setChords(chords: List<Chord>)
-
-    fun playNext(duration: Long)
+    fun playNext(baseNote: Note, allNotes: List<Note>, noteCount: Int, duration: Long)
 
     fun playAgainInSequence(duration: Long)
 

@@ -1,18 +1,22 @@
 package lt.liusbl.earadviser.training
 
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
 import lt.liusbl.earadviser.base.presenter.BasePresenterImpl
 import lt.liusbl.earadviser.training.notes.Note
+import lt.liusbl.earadviser.training.notes.NoteRepository
 
 class TrainingPresenter(
         private val model: TrainingContract.Model,
-        private val chordPlayer: ChordPlayer
+        private val chordPlayer: ChordPlayer,
+        private val noteRepository: NoteRepository
 ) : TrainingContract.Presenter, BasePresenterImpl<TrainingContract.View>() {
     private val disposables: CompositeDisposable = CompositeDisposable()
     private var duration = 400L
-    private var noteCount = 2
+    private var noteCount = 1
     private var isChordPlaying = false
 
     override fun onChordStartedListener() {
@@ -21,17 +25,6 @@ class TrainingPresenter(
 
     override fun onChordFinishedListener() {
         isChordPlaying = false
-    }
-
-    override fun onLoad() {
-        onView { showProgress() }
-        model.getChords(noteCount)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe({ chords ->
-                    chordPlayer.setChords(chords)
-                    onView { hideProgress() }
-                })
     }
 
     override fun onPlayChordAgainSelected() {
@@ -62,18 +55,11 @@ class TrainingPresenter(
     }
 
     override fun onDiminishNotesSelected() {
-
+        noteCount--
     }
 
     override fun onIncreaseNotesSelected() {
-        onView { showProgress() }
-        model.getChords(++noteCount)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe({ chords ->
-                    chordPlayer.setChords(chords)
-                    onView { hideProgress() }
-                })
+        noteCount++
     }
 
     override fun onPlayPreviousChordSelected() {
@@ -85,7 +71,15 @@ class TrainingPresenter(
     override fun onPlayNextChordButtonSelected() {
         if (!isChordPlaying) {
             onView { resetResult() }
-            chordPlayer.playNext(duration)
+            Observable.zip(noteRepository.getRandomBaseNote(), noteRepository.getNoteList(),
+                    BiFunction { baseNote: Note, allNotes: List<Note> ->
+                        chordPlayer.playNext(baseNote, allNotes, noteCount, duration)
+                    })
+                    .observeOn(Schedulers.io())
+                    .subscribeOn(AndroidSchedulers.mainThread())
+                    .subscribe {
+                        // todo hide progress
+                    }
         }
     }
 

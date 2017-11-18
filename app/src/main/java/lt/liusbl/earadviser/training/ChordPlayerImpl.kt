@@ -2,54 +2,61 @@ package lt.liusbl.earadviser.training
 
 import io.reactivex.Completable
 import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import lt.liusbl.earadviser.training.notes.Note
 import lt.liusbl.earadviser.training.player.NotePlayer
 import lt.liusbl.earadviser.training.score.Chord
+import java.util.concurrent.TimeUnit
 
 class ChordPlayerImpl(
         private val listener: () -> OnChordEventListener,
         private val mainScheduler: Scheduler,
         private val computationScheduler: Scheduler,
-        private val notePlayer: NotePlayer
+        private val notePlayer: NotePlayer,
+        private val chordHandler: ChordHandler
 ) : ChordPlayer {
-    private var chords: List<Chord>? = null
-    private var chordPosition = 0
-
-    override fun setChords(chords: List<Chord>) {
-        this.chords = chords
-    }
-
-    override fun playNext(duration: Long) {
-        if (chordPosition != chords?.size) {
-            playAtOnce(++chordPosition, duration)
-        }
+    override fun playNext(baseNote: Note, allNotes: List<Note>, noteCount: Int, duration: Long) {
+        chordHandler.getNextChord(baseNote, allNotes, noteCount)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe { chord: Chord ->
+                    chord.notes.forEach { note -> play { playNote(note, duration) } }
+                }
     }
 
     override fun playAgainInSequence(duration: Long) {
-        play { getNotes(chordPosition)?.forEach { note -> playNote(note, duration) } }
+        chordHandler.getLastChord()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe { chord: Chord ->
+                    play { chord.notes.forEach { note -> playNote(note, duration) } }
+                }
     }
 
     override fun playAgain(duration: Long) {
-        playAtOnce(chordPosition, duration)
+        chordHandler.getLastChord()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe { chord: Chord ->
+                    chord.notes.forEach { note -> play { playNote(note, duration) } }
+                }
     }
 
     override fun playPrevious(duration: Long) {
-        if (chordPosition != 0) {
-            playAtOnce(--chordPosition, duration)
-        }
+        chordHandler.getPreviousChord()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe { chord: Chord ->
+                    chord.notes.forEach { note -> play { playNote(note, duration) } }
+                }
     }
-
-    private fun playAtOnce(chordPosition: Int, duration: Long) {
-        getNotes(chordPosition)?.forEach { note -> play { playNote(note, duration) } }
-    }
-
-    private fun getNotes(chordPosition: Int) = chords?.get(chordPosition)?.notes
 
     override fun playBaseNote(note: Note, duration: Long) {
         play { playNote(note, duration) }
     }
 
-    override fun getCurrentChord() = chords?.get(chordPosition) ?: Chord(emptyList())
+    override fun getCurrentChord() = Chord(emptyList()) // todo
 
     private fun playNote(note: Note, duration: Long) {
         notePlayer.play(note, duration)
