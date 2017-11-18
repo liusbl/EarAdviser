@@ -10,7 +10,6 @@ import lt.liusbl.earadviser.training.notes.Note
 import lt.liusbl.earadviser.training.notes.NoteRepository
 
 class TrainingPresenter(
-        private val model: TrainingContract.Model,
         private val chordPlayer: ChordPlayer,
         private val noteRepository: NoteRepository
 ) : TrainingContract.Presenter, BasePresenterImpl<TrainingContract.View>() {
@@ -35,9 +34,9 @@ class TrainingPresenter(
 
     override fun onPlay440ButtonSelected() {
         if (!isChordPlaying) {
-            model.getFundamentalNote().subscribe({ note ->
-                chordPlayer.playBaseNote(note, duration)
-            })
+//            model.getFundamentalNote().subscribe({ note ->
+//                chordPlayer.playBaseNote(note, duration)
+//            })
         }
     }
 

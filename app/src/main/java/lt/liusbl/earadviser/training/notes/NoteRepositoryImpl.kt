@@ -1,7 +1,6 @@
 package lt.liusbl.earadviser.training.notes
 
 import io.reactivex.Observable
-import lt.liusbl.earadviser.training.score.Score
 import java.util.*
 
 class NoteRepositoryImpl : NoteRepository {

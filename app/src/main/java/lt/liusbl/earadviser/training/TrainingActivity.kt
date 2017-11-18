@@ -12,12 +12,9 @@ import lt.liusbl.earadviser.R
 import lt.liusbl.earadviser.training.notes.NoteHandlerImpl
 import lt.liusbl.earadviser.training.notes.NoteRepositoryImpl
 import lt.liusbl.earadviser.training.notes.RandomSortedIntGeneratorImpl
-import lt.liusbl.earadviser.training.notes.ScoreFactoryImpl
 import lt.liusbl.earadviser.training.player.AudioTrackHandlerImpl
 import lt.liusbl.earadviser.training.player.FrequencyAudioDataGeneratorImpl
 import lt.liusbl.earadviser.training.player.NotePlayerImpl
-import lt.liusbl.earadviser.util.CollectionShufflerImpl
-import lt.liusbl.earadviser.util.math.PermutationFactoryImpl
 import java.util.*
 
 class TrainingActivity : AppCompatActivity(), TrainingContract.View {
@@ -31,13 +28,8 @@ class TrainingActivity : AppCompatActivity(), TrainingContract.View {
     }
 
     private fun initializePresenter() {
-        val permutationFactory = PermutationFactoryImpl()
-        val collectionShuffler = CollectionShufflerImpl()
-        val scoreFactory = ScoreFactoryImpl(permutationFactory, collectionShuffler)
         val noteRepository = NoteRepositoryImpl()
         val noteHandler = NoteHandlerImpl()
-        val model = TrainingModel(AndroidSchedulers.mainThread(), noteRepository,
-                noteHandler, scoreFactory)
         val frequencyAudioDataGenerator = FrequencyAudioDataGeneratorImpl()
         val audioTrackHandler = AudioTrackHandlerImpl()
         val intGenerator = RandomSortedIntGeneratorImpl(Random())
@@ -47,7 +39,7 @@ class TrainingActivity : AppCompatActivity(), TrainingContract.View {
         val notePlayer = NotePlayerImpl(frequencyAudioDataGenerator, audioTrackHandler)
         val chordPlayer = ChordPlayerImpl(this, AndroidSchedulers.mainThread(),
                 Schedulers.computation(), notePlayer, chordHandler)
-        presenter = TrainingPresenter(model, chordPlayer, noteRepository)
+        presenter = TrainingPresenter(chordPlayer, noteRepository)
         presenter.takeView(this)
     }
 
