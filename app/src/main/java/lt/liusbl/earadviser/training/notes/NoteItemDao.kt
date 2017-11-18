@@ -9,4 +9,7 @@ import lt.liusbl.earadviser.base.database.BaseDao
 interface NoteItemDao : BaseDao<NoteItem> {
     @Query("SELECT * FROM NoteItem")
     fun queryAll(): Single<List<NoteItem>>
+
+    @Query("SELECT * FROM NoteItem WHERE octave = :octave")
+    fun queryByOctave(octave: Int): Single<List<NoteItem>>
 }
