@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toTopOf="@+id/trainingNoteCountTextView"
         app:layout_constraintEnd_toStartOf="@+id/trainingDurationTextView"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/trainingPlayChordAgain" />
+        app:layout_constraintStart_toStartOf="@+id/trainingPlayChordAgainImage" />
 
     <TextView
         android:id="@+id/trainingDurationTextView"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/trainingDurationSeekBar"
-        app:layout_constraintEnd_toEndOf="@+id/trainingPlayInSequence"
+        app:layout_constraintEnd_toEndOf="@+id/trainingPlayInSequenceImage"
         app:layout_constraintTop_toTopOf="@+id/trainingDurationSeekBar"
         tools:text="400 ms" />
 
@@ -50,61 +50,60 @@
         android:layout_width="0dp"
         android:layout_height="47dp"
         android:text="@string/training_button_play_show_result"
-        app:layout_constraintBottom_toTopOf="@+id/trainingPlayPreviousChord"
-        app:layout_constraintEnd_toEndOf="@+id/trainingPlayNextChordButton"
-        app:layout_constraintStart_toStartOf="@+id/trainingPlayNextChordButton"
+        app:layout_constraintBottom_toTopOf="@+id/trainingPlayPreviousChordImage"
+        app:layout_constraintEnd_toEndOf="@+id/trainingPlayNextChordImage"
+        app:layout_constraintStart_toStartOf="@+id/trainingPlayNextChordImage"
         app:layout_constraintTop_toTopOf="@+id/trainingPlay440Button" />
 
-    <Button
-        android:id="@+id/trainingPlayNextChordButton"
+    <ImageView
+        android:id="@+id/trainingPlayNextChordImage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="@string/training_button_play_next_chord"
-        app:layout_constraintBottom_toBottomOf="@+id/trainingPlayPreviousChord"
+        android:src="@drawable/button_play_next"
+        app:layout_constraintBottom_toBottomOf="@+id/trainingPlayPreviousChordImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/trainingPlayPreviousChord"
-        app:layout_constraintTop_toTopOf="@+id/trainingPlayPreviousChord" />
+        app:layout_constraintStart_toEndOf="@+id/trainingPlayPreviousChordImage"
+        app:layout_constraintTop_toTopOf="@+id/trainingPlayPreviousChordImage" />
 
     <Button
         android:id="@+id/trainingPlay440Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/training_button_play_440hz"
-        app:layout_constraintBottom_toTopOf="@+id/trainingPlayPreviousChord"
-        app:layout_constraintEnd_toEndOf="@+id/trainingPlayPreviousChord"
-        app:layout_constraintStart_toStartOf="@+id/trainingPlayPreviousChord" />
+        app:layout_constraintBottom_toTopOf="@+id/trainingPlayPreviousChordImage"
+        app:layout_constraintEnd_toEndOf="@+id/trainingPlayPreviousChordImage"
+        app:layout_constraintStart_toStartOf="@+id/trainingPlayPreviousChordImage" />
 
-    <Button
-        android:id="@+id/trainingPlayChordAgain"
+    <ImageView
+        android:id="@+id/trainingPlayChordAgainImage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/training_button_play_chords_again"
+        android:src="@drawable/button_repeat"
         app:layout_constraintBottom_toTopOf="@+id/trainingPlay440Button"
         app:layout_constraintEnd_toEndOf="@+id/trainingPlay440Button"
         app:layout_constraintStart_toStartOf="@+id/trainingPlay440Button" />
 
-    <Button
-        android:id="@+id/trainingPlayInSequence"
+    <ImageView
+        android:id="@+id/trainingPlayInSequenceImage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/training_button_play_in_sequence"
+        android:src="@drawable/button_repeat_one_at_a_time"
         app:layout_constraintBottom_toTopOf="@+id/trainingShowResultButton"
         app:layout_constraintEnd_toEndOf="@+id/trainingShowResultButton"
         app:layout_constraintStart_toStartOf="@+id/trainingShowResultButton" />
 
-    <Button
-        android:id="@+id/trainingPlayPreviousChord"
+    <ImageView
+        android:id="@+id/trainingPlayPreviousChordImage"
         android:layout_width="0dp"
+        android:src="@drawable/button_play_previous"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="@string/training_button_play_previous_chord"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/trainingPlayNextChordButton"
+        app:layout_constraintEnd_toStartOf="@+id/trainingPlayNextChordImage"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -115,25 +114,25 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/trainingPlayInSequence"
-        app:layout_constraintEnd_toStartOf="@+id/trainingIncreaseNotesImageView"
+        app:layout_constraintBottom_toTopOf="@+id/trainingPlayInSequenceImage"
+        app:layout_constraintEnd_toStartOf="@+id/trainingIncreaseNotesImage"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/trainingDiminishNotesImageView"
+        app:layout_constraintStart_toEndOf="@+id/trainingDiminishNotesImage"
         tools:text="2" />
 
     <ImageView
-        android:id="@+id/trainingIncreaseNotesImageView"
+        android:id="@+id/trainingIncreaseNotesImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@android:drawable/arrow_up_float"
         app:layout_constraintBottom_toBottomOf="@+id/trainingNoteCountTextView"
-        app:layout_constraintEnd_toEndOf="@+id/trainingPlayInSequence"
+        app:layout_constraintEnd_toEndOf="@+id/trainingPlayInSequenceImage"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/trainingNoteCountTextView"
         app:layout_constraintTop_toTopOf="@+id/trainingNoteCountTextView" />
 
     <ImageView
-        android:id="@+id/trainingDiminishNotesImageView"
+        android:id="@+id/trainingDiminishNotesImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@android:drawable/arrow_down_float"
@@ -141,13 +140,14 @@
         app:layout_constraintEnd_toStartOf="@+id/trainingNoteCountTextView"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="@+id/trainingPlayInSequence"
+        app:layout_constraintStart_toStartOf="@+id/trainingPlayInSequenceImage"
         app:layout_constraintTop_toTopOf="@+id/trainingNoteCountTextView" />
 
     <lt.liusbl.earadviser.util.widget.ModalProgressView
         android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

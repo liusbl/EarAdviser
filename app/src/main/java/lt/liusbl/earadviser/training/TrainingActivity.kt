@@ -48,14 +48,16 @@ class TrainingActivity : AppCompatActivity(), TrainingContract.View {
     override fun invoke() = presenter
 
     private fun setUpOnClickListener() {
-        trainingPlayChordAgain.setOnClickListener { presenter.onPlayChordAgainSelected() }
-        trainingPlayInSequence.setOnClickListener { presenter.onPlayInSequenceSelected() }
+        trainingPlayChordAgainImage.setOnClickListener { presenter.onPlayChordAgainSelected() }
+        trainingPlayInSequenceImage.setOnClickListener { presenter.onPlayInSequenceSelected() }
         trainingPlay440Button.setOnClickListener { presenter.onPlay440ButtonSelected() }
         trainingShowResultButton.setOnClickListener { presenter.onShowResultButtonSelected() }
-        trainingPlayPreviousChord.setOnClickListener { presenter.onPlayPreviousChordSelected() }
-        trainingPlayNextChordButton.setOnClickListener { presenter.onPlayNextChordButtonSelected() }
-        trainingDiminishNotesImageView.setOnClickListener { presenter.onDiminishNotesSelected() }
-        trainingIncreaseNotesImageView.setOnClickListener { presenter.onIncreaseNotesSelected() }
+        trainingPlayPreviousChordImage.setOnClickListener {
+            presenter.onPlayPreviousChordSelected()
+        }
+        trainingPlayNextChordImage.setOnClickListener { presenter.onPlayNextChordButtonSelected() }
+        trainingDiminishNotesImage.setOnClickListener { presenter.onDiminishNotesSelected() }
+        trainingIncreaseNotesImage.setOnClickListener { presenter.onIncreaseNotesSelected() }
         trainingDurationSeekBar.setOnSeekBarChangeListener(createOnSeekBarChangeListener())
     }
 
