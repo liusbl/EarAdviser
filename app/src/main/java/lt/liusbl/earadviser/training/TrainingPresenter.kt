@@ -8,8 +8,9 @@ import io.reactivex.schedulers.Schedulers
 import lt.liusbl.earadviser.base.presenter.BasePresenterImpl
 import lt.liusbl.earadviser.training.notes.NoteItem
 import lt.liusbl.earadviser.training.notes.NoteRepository
+import javax.inject.Inject
 
-class TrainingPresenter(
+class TrainingPresenter @Inject constructor(
         private val chordPlayer: ChordPlayer,
         private val noteRepository: NoteRepository
 ) : TrainingContract.Presenter, BasePresenterImpl<TrainingContract.View>() {

@@ -4,6 +4,8 @@ import io.reactivex.Completable
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import lt.liusbl.earadviser.base.scheduler.ComputationThread
+import lt.liusbl.earadviser.base.scheduler.MainThread
 import lt.liusbl.earadviser.training.notes.Note
 import lt.liusbl.earadviser.training.notes.NoteItem
 import lt.liusbl.earadviser.training.player.NotePlayer
@@ -11,8 +13,8 @@ import lt.liusbl.earadviser.training.score.Chord
 
 class ChordPlayerImpl(
         private val listener: () -> OnChordEventListener,
-        private val mainScheduler: Scheduler,
-        private val computationScheduler: Scheduler,
+//        @MainThread private val mainScheduler: Scheduler,
+//        @ComputationThread private val computationScheduler: Scheduler,
         private val notePlayer: NotePlayer,
         private val chordHandler: ChordHandler
 ) : ChordPlayer {
@@ -75,8 +77,8 @@ class ChordPlayerImpl(
     private fun play(action: () -> Unit) {
         listener().onChordStartedListener()
         Completable.fromAction(action)
-                .observeOn(mainScheduler)
-                .subscribeOn(computationScheduler)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.computation())
                 .subscribe { listener().onChordFinishedListener() }
     }
 }

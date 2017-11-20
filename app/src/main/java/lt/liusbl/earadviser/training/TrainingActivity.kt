@@ -3,25 +3,14 @@ package lt.liusbl.earadviser.training
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.SeekBar
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_training.*
 import lt.liusbl.earadviser.R
-import lt.liusbl.earadviser.R.id.*
 import lt.liusbl.earadviser.base.dagger.BaseActivity
-import lt.liusbl.earadviser.base.dependencyRetriever
-import lt.liusbl.earadviser.training.notes.NoteHandlerImpl
-import lt.liusbl.earadviser.training.notes.NoteRepositoryImpl
-import lt.liusbl.earadviser.training.notes.RandomSortedIntGeneratorImpl
-import lt.liusbl.earadviser.training.player.AudioTrackHandlerImpl
-import lt.liusbl.earadviser.training.player.FrequencyAudioDataGeneratorImpl
-import lt.liusbl.earadviser.training.player.NotePlayerImpl
-import java.util.*
+import javax.inject.Inject
 
 class TrainingActivity : BaseActivity(), TrainingContract.View {
-    private lateinit var presenter: TrainingPresenter
+    @Inject lateinit var presenter: TrainingPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,19 +20,19 @@ class TrainingActivity : BaseActivity(), TrainingContract.View {
     }
 
     private fun initializePresenter() {
-        val appDatabase = applicationContext.dependencyRetriever.appDatabase
-        val noteRepository = NoteRepositoryImpl(appDatabase.noteItemDao())
-        val noteHandler = NoteHandlerImpl()
-        val frequencyAudioDataGenerator = FrequencyAudioDataGeneratorImpl()
-        val audioTrackHandler = AudioTrackHandlerImpl()
-        val intGenerator = RandomSortedIntGeneratorImpl(Random())
-        val chordFactory = ChordFactoryImpl(intGenerator, noteHandler)
-        val chordRepository = ChordRepositoryImpl()
-        val chordHandler = ChordHandlerImpl(chordFactory, chordRepository)
-        val notePlayer = NotePlayerImpl(frequencyAudioDataGenerator, audioTrackHandler)
-        val chordPlayer = ChordPlayerImpl(this, AndroidSchedulers.mainThread(),
-                Schedulers.computation(), notePlayer, chordHandler)
-        presenter = TrainingPresenter(chordPlayer, noteRepository)
+//        val appDatabase = applicationContext.dependencyRetriever.appDatabase
+//        val noteRepository = NoteRepositoryImpl(appDatabase.noteItemDao())
+//        val noteHandler = NoteHandlerImpl()
+//        val frequencyAudioDataGenerator = FrequencyAudioDataGeneratorImpl()
+//        val audioTrackHandler = AudioTrackHandlerImpl()
+//        val intGenerator = RandomSortedIntGeneratorImpl(Random())
+//        val chordFactory = ChordFactoryImpl(intGenerator, noteHandler)
+//        val chordRepository = ChordRepositoryImpl()
+//        val chordHandler = ChordHandlerImpl(chordFactory, chordRepository)
+//        val notePlayer = NotePlayerImpl(frequencyAudioDataGenerator, audioTrackHandler)
+//        val chordPlayer = ChordPlayerImpl(this, AndroidSchedulers.mainThread(),
+//                Schedulers.computation(), notePlayer, chordHandler)
+//        presenter = TrainingPresenter(chordPlayer, noteRepository)
         presenter.takeView(this)
     }
 

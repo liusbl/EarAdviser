@@ -8,7 +8,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = arrayOf(AndroidSupportInjectionModule::class, AppModule::class,
-        ActivitiesModule::class))
+        ActivitiesModule::class/*, SchedulerModule::class*/))
 interface AppComponent : AndroidInjector<BaseApplication> {
     @Component.Builder
     abstract class Builder : AndroidInjector.Builder<BaseApplication>()
