@@ -9,6 +9,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_training.*
 import lt.liusbl.earadviser.R
+import lt.liusbl.earadviser.R.id.*
+import lt.liusbl.earadviser.base.dagger.BaseActivity
 import lt.liusbl.earadviser.base.dependencyRetriever
 import lt.liusbl.earadviser.training.notes.NoteHandlerImpl
 import lt.liusbl.earadviser.training.notes.NoteRepositoryImpl
@@ -18,7 +20,7 @@ import lt.liusbl.earadviser.training.player.FrequencyAudioDataGeneratorImpl
 import lt.liusbl.earadviser.training.player.NotePlayerImpl
 import java.util.*
 
-class TrainingActivity : AppCompatActivity(), TrainingContract.View {
+class TrainingActivity : BaseActivity(), TrainingContract.View {
     private lateinit var presenter: TrainingPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
